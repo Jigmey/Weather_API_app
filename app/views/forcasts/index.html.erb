@@ -1,0 +1,16 @@
+<h1><%=@nyc_weather["title"]%></h1>
+
+<%= form_tag('/forecasts', :method => "get") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+<%= submit_tag "Search" %>
+<% end %>
+<h2><%=@nyc_weather["condition"]["date"]%></h2>
+<p>Current Temperature: <%=@nyc_weather["condition"]["temp"]%></p>
+
+<%@nyc_weather["forecast"].first(5).each do |weather|%>
+	<h3><%=weather["date"]%></h3>
+	<p><%=weather["day"]%></p>
+	<p>High:<%=weather["high"]%></p>
+	<p>Low:<%=weather["low"]%></p>
+	<p><%=weather["text"]%></p>
+<%end%>
